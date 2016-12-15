@@ -11,7 +11,7 @@ describe "User creates a new company" do
     expect(Company.count).to eq(0)
   end
 
-  scenario "a user sees helpful error messages and nothing is saved to the database when a duplicate name is  provided" do
+  scenario "a user sees helpful error messages and nothing is saved to the database when a duplicate name is provided" do
     Company.create(name: "ESPN")
     visit new_company_path
 
