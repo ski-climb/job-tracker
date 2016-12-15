@@ -8,9 +8,7 @@
   </head>
   <body>
     <div class="container">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
-      <% end %>
+      <%= render partial: 'shared/notices' %>
       <%= render partial: 'shared/errors', locals: { target: @errors } %>
 
       <%= yield %>
