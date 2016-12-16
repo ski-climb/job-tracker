@@ -1,16 +1,16 @@
 class JobsController < ApplicationController
   def index
-    @company = Company.find(params[:company_id])
+    @company = find_company(params[:company_id])
     @jobs = @company.jobs
   end
 
   def new
-    @company = Company.find(params[:company_id])
+    @company = find_company(params[:company_id])
     @job = Job.new()
   end
 
   def create
-    @company = Company.find(params[:company_id])
+    @company = find_company(params[:company_id])
     @job = @company.jobs.new(job_params)
     if @job.save
       flash[:success] = "You created #{@job.title} at #{@company.name}"
@@ -22,15 +22,23 @@ class JobsController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id])
+    @job = find_job(params[:id])
   end
 
   def edit
-    # implement on your own!
+    @company = find_company(params[:company_id])
+    @job = find_job(params[:id])
   end
 
   def update
-    # implement on your own!
+    @company = find_company(params[:company_id])
+    @job = find_job(params[:id])
+    if @job.update(job_params)
+      redirect_to company_job_path(@company, @job)
+    else
+      @errors = @job.errors
+      render :edit
+    end
   end
 
   def destroy
@@ -41,5 +49,9 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :level_of_interest, :city)
+  end
+
+  def find_job(id)
+    Job.find(id)
   end
 end
