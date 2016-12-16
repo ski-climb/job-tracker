@@ -6,16 +6,18 @@
       <th>Title</th>
       <th>City</th>
       <th>Level of Interest</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @jobs.each do |job| %>
-      <tr>
+      <tr id="job_<%= job.id %>">
         <td>
           <%= link_to job.title, company_job_path(job.company, job), class: "table_name" %>
         </td>
         <td><%= job.city %></td>
         <td><%= job.level_of_interest %></td>
+        <td><%= link_to 'Delete', company_job_path(@company, job), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
