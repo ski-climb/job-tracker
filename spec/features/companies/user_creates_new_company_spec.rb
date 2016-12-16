@@ -12,7 +12,7 @@ describe "User creates a new company" do
   end
 
   scenario "a user sees helpful error messages and nothing is saved to the database when a duplicate name is provided" do
-    Company.create(name: "ESPN")
+    create(:company, name: "ESPN")
     visit new_company_path
 
     fill_in "company[name]", with: "ESPN"
@@ -28,7 +28,9 @@ describe "User creates a new company" do
     fill_in "company[name]", with: "ESPN"
     click_button "Create"
 
-    expect(current_path).to eq("/companies/#{Company.last.id}/jobs")
+    company = Company.find_by(name: "ESPN")
+
+    expect(page).to have_current_path company_jobs_path(company)
     expect(page).to have_content("ESPN")
     expect(Company.count).to eq(1)
   end
