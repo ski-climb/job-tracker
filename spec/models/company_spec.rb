@@ -4,20 +4,20 @@ describe Company do
   describe "validations" do
     context "invalid attributes" do
       it "is invalid without a name" do
-        company = Company.new()
+        company = build(:company, name: "")
         expect(company).to be_invalid
       end
 
       it "has a unique name" do
-        Company.create(name: "Dropbox")
-        company = Company.new(name: "Dropbox")
+        create(:company, name: "Dropbox")
+        company = build(:company, name: "Dropbox")
         expect(company).to be_invalid
       end
     end
 
     context "valid attributes" do
       it "is valid with a name" do
-        company = Company.new(name: "Dropbox")
+        company = build(:company)
         expect(company).to be_valid
       end
     end
@@ -25,7 +25,7 @@ describe Company do
 
   describe "relationships" do
     it "has many jobs" do
-      company = Company.new(name: "Dropbox")
+      company = build(:company)
       expect(company).to respond_to(:jobs)
     end
   end
