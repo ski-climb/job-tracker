@@ -1,9 +1,21 @@
-<h3>All Companies</h3>
-
-<% @companies.each do |company| %>
-  <ul class=company_<%= company.id %>>
-    <%= link_to company.name, company_path(company) %><br>
-    <%= link_to "Edit", edit_company_path(company) %>
-    <%= link_to "Delete", company_path(company), method: "delete" %>
-  </ul>
-<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Controls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr class=company_<%= company.id %>>
+        <td>
+          <%= link_to company.name, company_path(company), class: "table_name" %>
+        </td>
+        <td>
+          <%= link_to "Edit", edit_company_path(company) %>
+          <%= link_to "Delete", company_path(company), method: "delete" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
