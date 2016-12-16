@@ -1,13 +1,22 @@
-Title: <%= @job.title %>
-<br>
-
-Description: <%= @job.description %>
-<br>
-
-Level of Interest: <%= @job.level_of_interest %>
-<br>
-
-City: <%= @job.city %>
-<br>
-
-Company: <%= link_to @job.company.name, company_path(@job.company) %>
+<div class="list-group">
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">Title</h4>
+    <p clas="list-group-item-text"><%= @job.title %></p>
+  </div>
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">Company</h4>
+    <p clas="list-group-item-text"><%= @job.company.name %></p>
+  </div>
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">Description</h4>
+    <p clas="list-group-item-text"><%= @job.description %></p>
+  </div>
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">Level of Interest</h4>
+    <p clas="list-group-item-text"><%= @job.level_of_interest %></p>
+  </div>
+  <div class="list-group-item">
+    <h4 class="list-group-item-heading">City</h4>
+    <p clas="list-group-item-text"><%= @job.city %></p>
+  </div>
+</div>
