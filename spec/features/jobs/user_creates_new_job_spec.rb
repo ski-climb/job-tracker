@@ -8,7 +8,6 @@ describe "User creates a new job" do
     fill_in "job[title]", with: ""
     fill_in "job[level_of_interest]", with: ""
     fill_in "job[city]", with: ""
-
     click_button "Create"
 
     expect(page).to have_content "Title can't be blank"
@@ -18,19 +17,19 @@ describe "User creates a new job" do
   end
 
   scenario "a user can create a new job" do
-    company = create(:company)
+    company = create(:company, name: "Hasbro")
     visit new_company_job_path(company)
 
     fill_in "job[title]", with: "Developer"
     fill_in "job[description]", with: "So fun!"
     fill_in "job[level_of_interest]", with: 80
     fill_in "job[city]", with: "Denver"
-
     click_button "Create"
 
     job = Job.find_by(title: "Developer")
 
     expect(page).to have_current_path company_job_path(company, job)
+    expect(page).to have_content "Developer job at Hasbro was successfully created!"
     expect(page).to have_content company.name
     expect(page).to have_content "Developer"
     expect(page).to have_content "80"
