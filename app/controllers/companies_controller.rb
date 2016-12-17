@@ -41,9 +41,10 @@ class CompaniesController < ApplicationController
 
   def destroy
     company = find_company(params[:id])
+    company.jobs.destroy_all
     company.delete
 
-    flash[:success] = "#{company.name} was successfully deleted!"
+    flash[:success] = "#{company.name} and all associated jobs for #{company.name} were successfully deleted!"
     redirect_to companies_path
   end
 
