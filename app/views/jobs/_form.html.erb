@@ -1,6 +1,7 @@
 <%= bootstrap_form_for [@company, @job] do |f| %>
 
   <%= f.text_field :title, hide_label: true, placeholder: "Title" %>
+  <%= f.collection_select :category_id, Category.all, :id, :title, hide_label: true %>
   <%= f.text_field :description, hide_label: true, placeholder: "Description" %>
   <%= f.number_field :level_of_interest, hide_label: true, placeholder: "Level of interest" %>
   <%= f.text_field :city, hide_label: true, placeholder: "City" %>
