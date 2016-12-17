@@ -10,6 +10,7 @@
   <body>
     <%= render partial: 'shared/notices' %>
     <div class="container">
+      <%= render partial: 'shared/nav' %>
       <%= render partial: 'shared/errors', locals: { target: @errors } %>
 
       <%= yield %>
