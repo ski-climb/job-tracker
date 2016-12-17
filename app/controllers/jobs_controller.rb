@@ -14,6 +14,7 @@ class JobsController < ApplicationController
     @job = @company.jobs.new(job_params)
     if @job.save
       flash[:success] = "You created #{@job.title} at #{@company.name}"
+      flash[:success] = "#{@job.title.capitalize} job at #{@company.name} was successfully created!"
       redirect_to company_job_path(@company, @job)
     else
       @errors = @job.errors
