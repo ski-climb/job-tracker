@@ -17,6 +17,11 @@ describe Job do
         job = build(:job, city: "")
         expect(job).to be_invalid
       end
+
+      it "is invalid without a category" do
+        job = build(:job, category_id: nil)
+        expect(job).to be_invalid
+      end
     end
 
     context "valid attributes" do
@@ -32,12 +37,24 @@ describe Job do
       job = build(:job)
       expect(job).to respond_to(:company)
     end
+
+    it "belongs to a category" do
+      job = build(:job)
+      expect(job).to respond_to(:category)
+    end
   end
 
   describe "#company_name" do
     it "returns the company name" do
       job = build(:job)
       expect(job.company_name).to eq job.company.name
+    end
+  end
+
+  describe "#category_name" do
+    it "returns the category title" do
+      job = build(:job)
+      expect(job.category_title).to eq job.category.title
     end
   end
 end
