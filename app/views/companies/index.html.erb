@@ -7,7 +7,7 @@
   </thead>
   <tbody>
     <% @companies.each do |company| %>
-      <tr class=company_<%= company.id %>>
+      <tr id=company_<%= company.id %>>
         <td>
           <%= link_to company.name, company_path(company), class: "table_name" %>
         </td>

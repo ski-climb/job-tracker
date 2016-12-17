@@ -3,7 +3,10 @@ require 'rails_helper'
 describe "User edits and existing job" do
   scenario "a user sees helpful error messages and nothing is saved to the database when invalid attributes are provided" do
     job = create(:job, title: "Developer")
-    visit edit_company_job_path(job.company, job)
+    visit company_jobs_path(job.company)
+    within "#job_#{job.id}" do
+      click_on "Edit"
+    end
 
     expect(find_field('job[title]').value).to eq job.title
     expect(find_field('job[description]').value).to eq job.description
@@ -39,7 +42,3 @@ describe "User edits and existing job" do
     expect(page).to have_content "NEW CITY"
   end
 end
-
-
-
-

@@ -1,8 +1,13 @@
 require 'rails_helper'
 
 describe "User edits an existing company" do
-  scenario "a user sees helpful error messages and nothing is saved to the database when no name provided" do company = create(:company)
-    visit edit_company_path(company)
+  scenario "a user sees helpful error messages and nothing is saved to the database when no name provided" do 
+    company = create(:company)
+    visit companies_path
+
+    within "#company_#{company.id}" do
+      click_on "Edit"
+    end
 
     expect(find_field("company[name]").value).to eq company.name
 
