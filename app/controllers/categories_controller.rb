@@ -9,7 +9,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = find_category(params[:id])
+  end
+
+  def edit
+    @category = find_category(params[:id])
   end
 
   def create
@@ -23,9 +27,23 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    @category = find_category(params[:id])
+    if @category.update(category_params)
+      redirect_to category_path(@category)
+    else
+      @errors = @category.errors
+      render :edit
+    end
+  end
+
   private
 
     def category_params
       params.require(:category).permit(:title)
+    end
+
+    def find_category(id)
+      Category.find(id)
     end
 end

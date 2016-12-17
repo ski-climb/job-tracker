@@ -7,9 +7,12 @@
   </thead>
   <tbody>
     <% @categories.each do |category| %>
-      <tr id=category<%= category.id %>>
+      <tr id=category_<%= category.id %>>
         <td>
           <%= link_to category.title, category_path(category), class: "table_name" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_category_path(category) %>
         </td>
       </tr>
     <% end %>
