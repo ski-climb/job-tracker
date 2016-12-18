@@ -31,7 +31,7 @@ describe "User creates a new job" do
 
     job = Job.find_by(title: "Developer")
 
-    expect(page).to have_current_path company_job_path(company, job)
+    expect(page).to have_current_path job_path(job)
     expect(page).to have_content "Developer job at Hasbro was successfully created!"
     expect(page).to have_content company.name
     expect(page).to have_content "Developer"

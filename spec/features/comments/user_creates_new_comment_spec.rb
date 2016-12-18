@@ -8,7 +8,7 @@ describe "User creates a new comment" do
     fill_in "comment[content]", with: ""
     click_button "Create"
 
-    expect(page).to have_content "Content can't be blank"
+    expect(page).to have_content "Comment can't be blank"
     expect(Comment.count).to eq 0
   end
 
@@ -19,6 +19,7 @@ describe "User creates a new comment" do
     fill_in "comment[content]", with: "I think this one is going to pan out."
     click_button "Create"
 
+    comment = Comment.first
     expect(page).to have_current_path job_path(job)
     expect(page).to have_content "Comment was successfully created!"
     expect(page).to have_content comment.content

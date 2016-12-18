@@ -1,0 +1,5 @@
+<%= bootstrap_form_for [@job, @comment] do |f| %>
+  <%= f.text_area :content, label: "Add comment" %>
+
+  <%= f.submit %>
+<% end %>
