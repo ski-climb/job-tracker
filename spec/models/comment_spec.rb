@@ -28,4 +28,11 @@ describe Comment do
       expect(comment).to respond_to(:job)
     end
   end
+
+  describe "#display_time" do
+    it "shows the date in a pleasant format" do
+      comment = create(:comment)
+      expect(comment.display_time).to eq DateTime.now.strftime('%d %b %Y, %l:%M %p')
+    end
+  end
 end
