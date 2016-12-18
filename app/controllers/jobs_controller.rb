@@ -45,6 +45,7 @@ class JobsController < ApplicationController
 
   def destroy
     job = find_job(params[:id])
+    job.comments.destroy_all
     job.destroy
     @company = find_company(params[:company_id])
     flash[:success] = "#{job.title} at #{@company.name} was successfully deleted!"
