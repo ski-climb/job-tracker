@@ -21,6 +21,7 @@ class CompaniesController < ApplicationController
   def show
     @company = find_company(params[:id])
     @jobs = @company.jobs
+    @contact = Contact.new
   end
 
   def edit

@@ -31,3 +31,14 @@
   </tbody>
 </table>
 <%= link_to "Add a new job", new_company_job_path(@company) %>
+
+<h3>Add information for a contact at <%= @company.name %></h3>
+<%= render partial: 'contacts/form' %>
+
+
+<% if @company.contacts.any? %>
+  <h3><strong>Contacts</strong></h3>
+  <div class="list=group">
+    <%= render partial: 'companies/contact', collection: @company.contacts.reverse %>
+  </div>
+<% end %>

@@ -19,7 +19,7 @@ describe "User creates a new comment" do
     fill_in "comment[content]", with: "I think this one is going to pan out."
     click_button "Create"
 
-    comment = Comment.first
+    comment = job.comments.first
     expect(page).to have_current_path job_path(job)
     expect(page).to have_content "Comment was successfully created!"
     expect(page).to have_content comment.content
