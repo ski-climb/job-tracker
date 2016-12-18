@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = find_category(params[:id])
+    @jobs = @category.jobs
   end
 
   def edit
@@ -35,6 +36,14 @@ class CategoriesController < ApplicationController
       @errors = @category.errors
       render :edit
     end
+  end
+
+  def destroy
+    category = find_category(params[:id])
+    category.jobs.destroy_all
+    category.delete
+    flash[:success] = "#{category.title} and all associated jobs for #{category.title} were successfully deleted!"
+    redirect_to categories_path
   end
 
   private
