@@ -28,5 +28,10 @@ describe Company do
       company = build(:company)
       expect(company).to respond_to(:jobs)
     end
+
+    it "has many contacts" do
+      company = build(:company)
+      expect(company).to respond_to(:contacts)
+    end
   end
 end
