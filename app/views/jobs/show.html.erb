@@ -28,4 +28,6 @@
 <%= render partial: 'comments/form' %>
 
 <h3><strong>Comments</strong></h3>
-<%= render partial: 'jobs/comments', collection: @job.comments.reverse %>
+<div class="list=group">
+  <%= render partial: 'jobs/comments', collection: @job.comments.reverse %>
+</div>
