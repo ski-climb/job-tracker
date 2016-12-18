@@ -16,7 +16,9 @@
         <td>
           <%= link_to job.title, job_path(job), class: "table_name" %>
         </td>
-        <td><%= link_to job.category_title, category_path(job.category) %></td>
+        <td>
+          <%= link_to job.category_title, category_path(job.category), class: "table_name" %>
+        </td>
         <td><%= job.city %></td>
         <td><%= job.level_of_interest %></td>
         <td><%= link_to "Edit", edit_company_job_path(@company, job) %></td>
