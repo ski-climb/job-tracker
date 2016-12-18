@@ -30,7 +30,7 @@ describe "User creates a new company" do
 
     company = Company.find_by(name: "ESPN")
 
-    expect(page).to have_current_path company_jobs_path(company)
+    expect(page).to have_current_path company_path(company)
     expect(page).to have_content "Company, #{company.name}, was successfully created!"
     expect(page).to have_content("ESPN")
     expect(Company.count).to eq(1)

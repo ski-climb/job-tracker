@@ -41,7 +41,7 @@ describe "User edits an existing company" do
     fill_in "company[name]", with: "EA Sports"
     click_button "Update"
 
-    expect(page).to have_current_path company_jobs_path(company)
+    expect(page).to have_current_path company_path(company)
     expect(page).to have_content("EA Sports")
     expect(page).to_not have_content(company.name)
   end
