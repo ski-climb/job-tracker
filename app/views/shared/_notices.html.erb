@@ -1,5 +1,5 @@
 <% flash.each do |name, msg| %>
-  <div class="alert alert-success">
+  <div class="alert alert-<%= name %>">
     <%= content_tag :div, msg, class: name %>
   </div>
 <% end %>

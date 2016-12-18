@@ -5,7 +5,7 @@ describe "User sees a specific job" do
     company = create(:company)
     job = create(:job, company: company)
 
-    visit company_job_path(company, job)
+    visit job_path(job)
 
     expect(page).to have_content company.name
     expect(page).to have_content job.title

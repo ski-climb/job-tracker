@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     def find_company(id)
       Company.find(id)
     end
+
+    def find_job(id)
+      Job.find(id)
+    end
 end

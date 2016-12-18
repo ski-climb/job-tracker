@@ -42,6 +42,11 @@ describe Job do
       job = build(:job)
       expect(job).to respond_to(:category)
     end
+
+    it "has many comments" do
+      job = build(:job)
+      expect(job).to respond_to(:comments)
+    end
   end
 
   describe "#company_name" do
