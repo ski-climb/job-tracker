@@ -8,7 +8,7 @@ describe "User creates a new contact" do
     fill_in "contact[name]", with: ""
     click_button "Create"
 
-    expect(page).to have_content "Contact can't be blank"
+    expect(page).to have_content "Contact must have a Name and Email to be valid."
     expect(Contact.count).to eq 0
   end
 
@@ -24,7 +24,7 @@ describe "User creates a new contact" do
 
     contact = company.contacts.first
     expect(page).to have_current_path company_path(company)
-    expect(page).to have_content "Contact was successfully created!"
+    expect(page).to have_content "#{contact.name} was added as a contact to #{company.name}"
     expect(page).to have_content contact.name
     expect(page).to have_content contact.position
     expect(page).to have_content contact.email

@@ -1,0 +1,7 @@
+<%= bootstrap_form_for [@company, @contact] do |f| %>
+  <%= f.text_field :name, hide_label: true, placeholder: "Name" %>
+  <%= f.text_field :email, hide_label: true, placeholder: "Email" %>
+  <%= f.text_field :position, hide_label: true, placeholder: "Position" %>
+
+  <%= f.submit %>
+<% end %>
