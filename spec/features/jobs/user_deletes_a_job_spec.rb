@@ -10,7 +10,7 @@ describe "User deletes existing job" do
       click_on "Delete"
     end
 
-    expect(page).to have_content "#{job_2.title} at #{company.name} was successfully deleted!"
+    expect(page).to have_content "The #{job_2.title} job located in #{job_2.city} was successfully deleted!"
     expect(Job.pluck(:title)).not_to include job_2.title
     expect(Job.count).to eq 2
   end
@@ -25,7 +25,7 @@ describe "User deletes existing job" do
       click_on "Delete"
     end
 
-    expect(page).to have_content "#{job_2.title} at #{company.name} was successfully deleted!"
+    expect(page).to have_content "The #{job_2.title} job located in #{job_2.city} was successfully deleted!"
     expect(Job.pluck(:title)).not_to include job_2.title
     expect(Job.count).to eq 2
     expect(Comment.count).to eq 0

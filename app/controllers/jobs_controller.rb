@@ -48,7 +48,7 @@ class JobsController < ApplicationController
     job.comments.destroy_all
     job.destroy
     @company = find_company(params[:company_id])
-    flash[:success] = "#{job.title} at #{@company.name} was successfully deleted!"
+    flash[:success] = "The #{job.title} job located in #{job.city} was successfully deleted!"
     redirect_to company_jobs_path(@company)
   end
 
