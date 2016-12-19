@@ -32,4 +32,15 @@ describe "User sees sorted list of jobs" do
     end
     expect(Job.count).to eq 3
   end
+
+  scenario "a user sees jobs for a given city " do
+    denver_job_1 = create(:job, city: "Denver", title: "Denver Job")
+    tucson       = create(:job, city: "Tucson", title: "Tucson Job")
+    denver_job_2 = create(:job, city: "Denver", title: "Denver Job")
+    visit dashboard_path
+    click_on "Denver"
+
+    expect(page).to have_content "Denver"
+    expect(page).not_to have_content "Tucson"
+  end
 end

@@ -82,4 +82,24 @@ describe Job do
       expect(Job.by_location).to eq [job_1, job_2, job_3]
     end
   end
+
+  describe ".for_location" do
+    it "returns jobs for that city only" do
+      job_3 = create(:job, city: "Tucson")
+      job_1 = create(:job, city: "Denver")
+      job_2 = create(:job, city: "Tucson")
+
+      expect(Job.for_location("Tucson")).to eq [job_3, job_2]
+    end
+  end
+
+  describe ".count_by_location" do
+    it "returns jobs for that city only" do
+      job_3 = create(:job, city: "Tucson")
+      job_1 = create(:job, city: "Denver")
+      job_2 = create(:job, city: "Tucson")
+
+      expect(Job.count_by_location).to eq({"Tucson" => 2, "Denver" => 1})
+    end
+  end
 end
