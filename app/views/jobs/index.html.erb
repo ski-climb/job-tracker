@@ -1,0 +1,34 @@
+<h2>All jobs</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Company</th>
+      <th>Category</th>
+      <th>City</th>
+      <th>Level of Interest</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr id="job_<%= job.id %>">
+        <td>
+          <%= link_to job.title, job_path(job), class: "table_name" %>
+        </td>
+        <td>
+          <%= link_to job.company_name, company_path(job.company), class: "table_name" %>
+        </td>
+        <td>
+          <%= link_to job.category_title, category_path(job.category), class: "table_name" %>
+        </td>
+        <td><%= job.city %></td>
+        <td><%= job.level_of_interest %></td>
+        <td><%= link_to "Edit", edit_company_job_path(job.company, job) %></td>
+        <td><%= link_to "Delete", company_job_path(job.company, job),
+          method: :delete,
+          data: {confirm: "Are you sure you would like to delete the job, #{job.title}, in #{job.city}?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

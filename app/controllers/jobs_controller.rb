@@ -1,5 +1,11 @@
 class JobsController < ApplicationController
 
+  def index
+    @jobs = Job.all
+    return @jobs = Job.by_level_of_interest if params[:sort] == "interest"
+    return @jobs = Job.by_location if params[:sort] == "location"
+  end
+
   def new
     @company = find_company(params[:company_id])
     @job = Job.new()
@@ -44,7 +50,7 @@ class JobsController < ApplicationController
     job.destroy
     @company = find_company(params[:company_id])
     flash[:success] = "The #{job.title} job located in #{job.city} was successfully deleted!"
-    redirect_to company_path(@company)
+    redirect_to :back
   end
 
   private
