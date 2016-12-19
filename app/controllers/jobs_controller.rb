@@ -4,6 +4,7 @@ class JobsController < ApplicationController
     @jobs = Job.all
     return @jobs = Job.by_level_of_interest if params[:sort] == "interest"
     return @jobs = Job.by_location if params[:sort] == "location"
+    return @jobs = Job.for_location(params[:location]) if params[:location]
   end
 
   def new

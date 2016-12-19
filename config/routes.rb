@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   resources :categories
+
+  get '/dashboard' => 'calculations#dashboard', as: 'dashboard'
+
 end

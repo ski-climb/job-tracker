@@ -6,6 +6,8 @@ class Job < ActiveRecord::Base
 
   scope :by_level_of_interest, -> { order 'level_of_interest DESC' }
   scope :by_location, -> { order 'city' }
+  scope :for_location, ->(city) { where(city: city) }
+  scope :count_by_location, -> { Job.group(:city).order('count_id desc').count('id') }
 
   def company_name
     company.name
