@@ -4,6 +4,9 @@ class Job < ActiveRecord::Base
   belongs_to :category
   has_many :comments
 
+  scope :by_level_of_interest, -> { order 'level_of_interest DESC' }
+  scope :by_location, -> { order 'city' }
+
   def company_name
     company.name
   end

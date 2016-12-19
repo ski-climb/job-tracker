@@ -62,4 +62,24 @@ describe Job do
       expect(job.category_title).to eq job.category.title
     end
   end
+
+  describe ".by_level_of_interest" do
+    it "returns jobs sorted by level of interest, highest first" do
+      job_3 = create(:job, level_of_interest: 30)
+      job_1 = create(:job, level_of_interest: 10)
+      job_2 = create(:job, level_of_interest: 20)
+
+      expect(Job.by_level_of_interest).to eq [job_3, job_2, job_1]
+    end
+  end
+
+  describe ".by_location" do
+    it "returns jobs sorted by location in aphabetical order" do
+      job_3 = create(:job, city: "Zebra Town")
+      job_1 = create(:job, city: "Allen Town")
+      job_2 = create(:job, city: "Moors Town")
+
+      expect(Job.by_location).to eq [job_1, job_2, job_3]
+    end
+  end
 end
