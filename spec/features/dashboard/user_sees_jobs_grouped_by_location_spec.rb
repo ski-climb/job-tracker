@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "User sees jobs grouped by location" do
+describe "User sees jobs grouped by attribute" do
   scenario "a user sees the count for of jobs at each city" do
     create_list(:job, 4, city: "Denver")
     create_list(:job, 2, city: "Tucson")

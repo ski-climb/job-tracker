@@ -102,4 +102,17 @@ describe Job do
       expect(Job.count_by_location).to eq({"Tucson" => 2, "Denver" => 1})
     end
   end
+
+  describe ".count_by_level_of_interest" do
+    it "returns jobs for that city only" do
+      create(:job, level_of_interest: 33)
+      create(:job, level_of_interest: 33)
+      create(:job, level_of_interest: 13)
+      create(:job, level_of_interest: 13)
+      create(:job, level_of_interest: 13)
+      create(:job, level_of_interest: 53)
+
+      expect(Job.count_by_level_of_interest).to eq({53 => 1, 33 => 2, 13 => 3})
+    end
+  end
 end
