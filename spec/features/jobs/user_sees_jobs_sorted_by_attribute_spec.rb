@@ -6,7 +6,7 @@ describe "User sees sorted list of jobs" do
     high_level_of_interest_job = create(:job, level_of_interest: 1000)
     low_level_of_interest_job = create(:job, level_of_interest: 1)
     visit root_path
-    click_on 'jobs by interest'
+    click_on 'Most interesting'
 
     within "tbody tr:first" do
       expect(find(:css, 'td:first').text).to eq high_level_of_interest_job.title
@@ -22,7 +22,7 @@ describe "User sees sorted list of jobs" do
     denver_job   = create(:job, city: "Denver", title: "Denver Job")
     tucson_job_2 = create(:job, city: "Tucson", title: "Tucson Job")
     visit root_path
-    click_on 'jobs by location'
+    click_on "Jobs by city"
 
     within "tbody tr:first" do
       expect(find(:css, 'td:first').text).to eq "Denver Job"

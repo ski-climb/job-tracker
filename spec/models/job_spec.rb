@@ -115,4 +115,36 @@ describe Job do
       expect(Job.count_by_level_of_interest).to eq({53 => 1, 33 => 2, 13 => 3})
     end
   end
+
+  describe ".highest_ranked_companies" do
+    it "returns the companies ordered according to the average level of interest of their jobs, highest first" do
+      company_1 = create(:company)
+      company_2 = create(:company)
+      create(:job, level_of_interest: 20, company: company_1)
+      create(:job, level_of_interest: 35, company: company_1)
+      create(:job, level_of_interest: 35, company: company_1)
+      create(:job, level_of_interest: 30, company: company_2)
+      create(:job, level_of_interest: 45, company: company_2)
+      create(:job, level_of_interest: 45, company: company_2)
+
+      expect(Job.highest_ranked_companies).to eq [[40, company_2.name], [30, company_1.name]]
+    end
+
+    it "limits the results to three companies" do
+      company_1 = create(:company)
+      company_2 = create(:company)
+      company_3 = create(:company)
+      company_4 = create(:company)
+      create(:job, level_of_interest: 20, company: company_1)
+      create(:job, level_of_interest: 35, company: company_2)
+      create(:job, level_of_interest: 35, company: company_3)
+      create(:job, level_of_interest: 30, company: company_4)
+      create(:job, level_of_interest: 45, company: company_1)
+      create(:job, level_of_interest: 45, company: company_2)
+
+      result = Job.highest_ranked_companies
+      expect(result.length).to eq 3
+    end
+  end
+
 end

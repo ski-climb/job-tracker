@@ -7,8 +7,9 @@ class Job < ActiveRecord::Base
   scope :by_level_of_interest, -> { order 'level_of_interest DESC' }
   scope :by_location, -> { order 'city' }
   scope :for_location, ->(city) { where(city: city) }
-  scope :count_by_location, -> { Job.group(:city).order('count_id DESC').count('id') }
-  scope :count_by_level_of_interest, -> { Job.group(:level_of_interest).order('count_id DESC').count('id') }
+  scope :count_by_location, -> { group(:city).order('count_id DESC').count('id') }
+  scope :count_by_level_of_interest, -> { group(:level_of_interest).order('count_id DESC').count('id') }
+  scope :rank_companies, -> { group(:company).average(:level_of_interest) }
 
   def company_name
     company.name
@@ -16,5 +17,11 @@ class Job < ActiveRecord::Base
 
   def category_title
     category.title
+  end
+
+  def self.highest_ranked_companies
+    rank_companies.to_a.map do |company, average_interest|
+      [average_interest.round(0).to_i, company.name]
+    end.sort.reverse.take(3)
   end
 end
