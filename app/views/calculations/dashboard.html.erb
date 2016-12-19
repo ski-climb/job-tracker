@@ -14,7 +14,7 @@
         <% @job_count_by_location.each do |city, count| %>
           <tr>
             <td>
-              <%= link_to city, jobs_path(location: city) %>
+              <%= link_to city, jobs_path(location: city), class: "table_name" %>
             </td>
             <td>
               <%= count %>
