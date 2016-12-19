@@ -1,23 +1,50 @@
 <h1>Job Dashboard</h1>
 
-<h2>By Location</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Location</th>
-      <th>Jobs at location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @job_count_by_location.each do |city, count| %>
-      <tr>
-        <td>
-          <%= link_to city, jobs_path(location: city) %>
-        </td>
-        <td>
-          <%= count %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-6">
+    <h2>By Location</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Jobs at location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @job_count_by_location.each do |city, count| %>
+          <tr>
+            <td>
+              <%= link_to city, jobs_path(location: city) %>
+            </td>
+            <td>
+              <%= count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <h2>By Level of Interest</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Level of interest</th>
+          <th>Number of jobs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @job_count_by_level_of_interest.each do |level_of_interest, count| %>
+          <tr>
+            <td>
+              <%= level_of_interest %>
+            </td>
+            <td>
+              <%= count %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
