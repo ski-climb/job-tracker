@@ -35,6 +35,11 @@ gem 'bootstrap_form'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :production do
+  # Heroku debugging (logging output)
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
@@ -54,3 +59,5 @@ group :development do
   gem 'spring'
 end
 
+# Specify ruby version for Heroku deployment
+ruby '2.3.0'
