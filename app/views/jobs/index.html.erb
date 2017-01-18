@@ -1,4 +1,8 @@
-<h1>Jobs</h1>
+<h1>
+  Jobs
+  <span><%= link_to "Most interesting", jobs_path(sort: "interest") %></span>
+  <span><%= link_to "Jobs by city", jobs_path(sort: "location") %></span>
+</h1>
 <table class="table table-striped">
   <thead>
     <tr>

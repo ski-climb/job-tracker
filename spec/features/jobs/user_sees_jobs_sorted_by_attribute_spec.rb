@@ -5,7 +5,7 @@ describe "User sees sorted list of jobs" do
     create_list(:job, 4)
     high_level_of_interest_job = create(:job, level_of_interest: 1000)
     low_level_of_interest_job = create(:job, level_of_interest: 1)
-    visit root_path
+    visit jobs_path
     click_on 'Most interesting'
 
     within "tbody tr:first" do
@@ -21,7 +21,7 @@ describe "User sees sorted list of jobs" do
     tucson_job_1 = create(:job, city: "Tucson", title: "Tucson Job")
     denver_job   = create(:job, city: "Denver", title: "Denver Job")
     tucson_job_2 = create(:job, city: "Tucson", title: "Tucson Job")
-    visit root_path
+    visit jobs_path
     click_on "Jobs by city"
 
     within "tbody tr:first" do
