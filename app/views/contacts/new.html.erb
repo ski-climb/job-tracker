@@ -1,0 +1,10 @@
+<br />
+Create a new contact
+<%= bootstrap_form_for @contact do |f| %>
+  <%= f.text_field :name, hide_label: true, placeholder: "Name" %>
+  <%= f.text_field :email, hide_label: true, placeholder: "Email" %>
+  <%= f.collection_select :company_id, Company.order(:name), :id, :name, prompt: true, hide_label: true %>
+  <%= f.text_field :position, hide_label: true, placeholder: "Position" %>
+
+  <%= f.submit %>
+<% end %>

@@ -1,20 +1,27 @@
 class ContactsController < ApplicationController
 
+  def index
+    @contacts = Contact.all
+  end
+
+  def new
+    @contact = Contact.new
+  end
+
   def create
-    @company = find_company(params[:company_id])
-    contact = @company.contacts.new(contacts_params)
-    if contact.save
-      flash[:success] = "#{contact.name} was added as a contact to #{@company.name}"
-      redirect_to company_path(@company)
+    @contact = Contact.new(contact_params)
+    if @contact.save
+      flash[:success] = "#{@contact.name} was successfully added as a contact."
+      redirect_to contacts_path
     else
-      flash[:danger] = "Contact must have a Name and Email to be valid."
-      redirect_to company_path(@company)
+      @errors = @contact.errors
+      render :new
     end
   end
 
   private
 
-    def contacts_params
-      params.require(:contact).permit(:name, :email, :position)
+    def contact_params
+      params.require(:contact).permit(:name, :email, :position, :company_id)
     end
 end

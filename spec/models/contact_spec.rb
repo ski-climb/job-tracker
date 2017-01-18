@@ -7,16 +7,6 @@ describe Contact do
         contact = build(:contact, name: "")
         expect(contact).to be_invalid
       end
-
-      it "is invalid without an email" do
-        contact = build(:contact, email: "")
-        expect(contact).to be_invalid
-      end
-
-      it "is invalid without a company" do
-        contact = build(:contact, company: nil)
-        expect(contact).to be_invalid
-      end
     end
 
     context "valid attributes" do
@@ -31,6 +21,21 @@ describe Contact do
     it "belongs to a company" do
       contact = build(:contact)
       expect(contact).to respond_to(:company)
+    end
+  end
+
+  describe "#company_name" do
+    let(:tesla)   { create(:company, name: "Tesla Motors") }
+    let(:contact) { create(:contact, company: tesla) }
+
+    it "returns an empty string when there is no company" do
+      contact.company = nil
+
+      expect(contact.company_name). to eq ""
+    end
+
+    it "returns the company name for the contact" do
+      expect(contact.company_name).to eq "Tesla Motors"
     end
   end
 end
