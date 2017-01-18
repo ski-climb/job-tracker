@@ -6,7 +6,7 @@ describe "User deletes existing job" do
     job_1, job_2, job_3 = create_list(:job, 3, company: company)
     visit company_path(company)
 
-    within "#job_#{job_2.id}" do
+    within ".job_#{job_2.id}" do
       click_on "Delete"
     end
 
@@ -21,7 +21,7 @@ describe "User deletes existing job" do
     create_list(:comment, 3, job: job_2)
     visit company_path(company)
 
-    within "#job_#{job_2.id}" do
+    within ".job_#{job_2.id}" do
       click_on "Delete"
     end
 

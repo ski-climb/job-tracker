@@ -4,7 +4,7 @@ describe "User edits and existing job" do
   scenario "a user sees helpful error messages and nothing is saved to the database when invalid attributes are provided" do
     job = create(:job, title: "Developer")
     visit company_path(job.company)
-    within "#job_#{job.id}" do
+    within ".job_#{job.id}" do
       click_on "Edit"
     end
 

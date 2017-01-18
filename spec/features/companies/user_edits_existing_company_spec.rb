@@ -5,7 +5,7 @@ describe "User edits an existing company" do
     company = create(:company)
     visit companies_path
 
-    within "#company_#{company.id}" do
+    within ".company_#{company.id}" do
       click_on "Edit"
     end
 

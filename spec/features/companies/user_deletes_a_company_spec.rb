@@ -5,7 +5,7 @@ describe "User deletes existing company" do
     company = create(:company)
     visit companies_path
 
-    within("#company_#{company.id}") do
+    within(".company_#{company.id}") do
       click_link "Delete"
     end
 
@@ -22,7 +22,7 @@ describe "User deletes existing company" do
     expect(Company.count).to eq 1
     expect(company.jobs.count).to eq 2
 
-    within "#company_#{company.id}" do
+    within ".company_#{company.id}" do
       click_on 'Delete'
     end
 

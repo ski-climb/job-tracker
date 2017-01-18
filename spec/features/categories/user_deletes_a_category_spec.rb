@@ -5,7 +5,7 @@ describe "User deletes existing category" do
     category = create(:category)
     visit categories_path
 
-    within("#category_#{category.id}") do
+    within(".category_#{category.id}") do
       click_link "Delete"
     end
 
@@ -22,7 +22,7 @@ describe "User deletes existing category" do
     expect(Category.count).to eq 1
     expect(category.jobs.count).to eq 2
 
-    within "#category_#{category.id}" do
+    within ".category_#{category.id}" do
       click_on 'Delete'
     end
 
